@@ -1,0 +1,28 @@
+<%= form_with(model: site, local: true) do |form| %>
+  <% if site.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(site.errors.count, "error") %> prohibited this site from being saved:</h2>
+
+      <ul>
+      <% site.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+  <%= form.label :port%>
+  <%= form.number_field :port %>
+  <%= form.label :https_backend %>
+  <%= form.check_box :https_backend %>
+  <%= form.label :https_enabled %>
+  <%= form.check_box :https_enabled %>
+  <%= form.label :https_redirect %>
+  <%= form.check_box :https_redirect %>
+  <%= form.label :certfile%> <%= form.file_field :certfile, multiple: false, direct_upload: true %>
+  <%= form.label :privkey %> <%= form.file_field :privkey, multiple: false, direct_upload: true %>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
